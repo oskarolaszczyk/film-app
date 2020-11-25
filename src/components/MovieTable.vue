@@ -3,23 +3,23 @@
     <table>
       <thead>
       <tr>
-        <th >Title</th>
-        <th >Production Year</th>
-        <th >Cast</th>
-        <th >Genres</th>
+        <th>Title</th>
+        <th>Production Year</th>
+        <th>Cast</th>
+        <th>Genres</th>
       </tr>
       </thead>
       <tbody>
-      <tr v-for="film in this.searchevents()" v-bind:key="film.title">
-        <td >{{ film.title }}</td>
-        <td >{{ film.year }}</td>
-        <td >{{ film.cast.join(', ') }}</td>
-        <td >{{ film.genres.join(', ') }}</td>
+      <tr v-for="film in sliceView()" v-bind:key="film.title">
+        <td>{{ film.title }}</td>
+        <td>{{ film.year }}</td>
+        <td>{{ film.cast.join(', ') }}</td>
+        <td>{{ film.genres.join(', ') }}</td>
       </tr>
       </tbody>
     </table>
     <div>
-      <button type="button" id="more" @click="this.increaseLimit">
+      <button type="button" id="more" @click="moreMovies()">
         More
       </button>
     </div>
@@ -40,11 +40,11 @@ export default {
   },
   
   methods: {
-    searchevents: function () {
+    sliceView: function () {
       let films = this.dataFromEvent;
       return films.slice(0, this.n);
     },
-    increaseLimit: function () {
+    moreMovies: function () {
       this.n += this.numberOfMovies;
     },
   }
@@ -52,14 +52,9 @@ export default {
 </script>
 
 <style scoped>
-      #tableFilms {
-      padding-top: 30px;
-      }
-
-      #more {
-      margin-bottom: 30px;
-      }
-
+#tableFilms {
+      margin: 0 auto;
+}
       tr:hover{
             background-color: #aaa;
       }

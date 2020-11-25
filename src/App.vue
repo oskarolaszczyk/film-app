@@ -1,17 +1,21 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
+  <SearchEngine/>
   <MovieTable :dataFromEvent='eventData' />
 
 </template>
 
 <script>
 import MovieTable from './components/MovieTable.vue'
+import SearchEngine from './components/SeachEnigne.vue'
+
 import films from './assets/movies.json'
 
 export default {
   name: 'App',
   components: {
-    MovieTable
+    MovieTable,
+    SearchEngine
   },
   data: function(){
     return {

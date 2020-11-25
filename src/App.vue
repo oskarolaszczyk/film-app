@@ -1,16 +1,23 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <MovieTable :dataFromEvent='eventData' />
+
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import MovieTable from './components/MovieTable.vue'
+import films from './assets/movies.json'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+    MovieTable
+  },
+  data: function(){
+    return {
+      eventData: films
+    }
+}
 }
 </script>
 

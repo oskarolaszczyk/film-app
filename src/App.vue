@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <SearchEngine/>
+  <SearchEngine @search-event="handleAppEvent"/>
   <MovieTable :dataFromEvent='eventData' />
 
 </template>
@@ -8,7 +8,6 @@
 <script>
 import MovieTable from './components/MovieTable.vue'
 import SearchEngine from './components/SeachEnigne.vue'
-
 import films from './assets/movies.json'
 
 export default {
@@ -21,8 +20,14 @@ export default {
     return {
       eventData: films
     }
+  },
+    methods: {
+    handleAppEvent: function(data) {
+      this.eventData = data;
+    }
+  }
 }
-}
+
 </script>
 
 <style>

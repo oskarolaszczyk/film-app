@@ -21,19 +21,62 @@
           <input type="text" id="inputCast" placeholder="Imię i nazwisko"/>
         </div>
         <div>
-            <input type="button" value="Szukaj"/>
+            <button
+          type="button"
+          v-on:click="search"
+      >
+        Search
+      </button>
         </div>
 </form>
 </template>
 
 <script>
+      import movies from '../assets/movies.json';
+        import _ from 'underscore'
+
       export default {
-      name: "SearchEngine"
-      }
+            name: "SearchEngine",
+            data: function () {
+                  return {
+                        movies: movies,
+                        inputTitle: "",
+      inputYearFrom: "",
+      inputYearTo: "",
+      inputCast: "",
+      listEmitted: movies,
+                  }
+            },
+            methods: {
+                search: function () {
+                let self = this;
+                this.listEmitted = _.filter(this.movies, function (film) {
+                    if (
+                        (self.inputTitle === "" ||
+                            film.title.toLowerCase().includes(self.inputTitle.toLowerCase())) &&
+                        (film.year >= self.inputYearFrom || self.inputYearFrom === "") &&
+                        (film.year <= self.inputYearTo || self.inputYearTo === "")
+                    ) {
+                    if (self.inputCast === "") {
+                        return true;
+                    } else {
+                        for (let i = 0; i < film.cast.length; i++) {
+                        if (film.cast[i].toLowerCase() === self.inputCast.toLowerCase()) {
+                            return true;
+                        }
+                        }
+                    }
+                    }
+                    return false;
+                });
+                this.$emit("search-event", self.listEmitted);
+    },
+  },
+};
 </script>
 
 <style scoped>
-     
+    
 </style>
 
 

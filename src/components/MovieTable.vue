@@ -19,9 +19,7 @@
       </tbody>
     </table>
     <div>
-      <button type="button" id="more" @click="moreMovies()">
-        More
-      </button>
+      <button type="button" id="more" @click="moreMovies()">More</button>
     </div>
   </div>
 </template>
@@ -52,9 +50,6 @@ export default {
 </script>
 
 <style scoped>
-#tableFilms {
-      margin: 0 auto;
-}
       tr:hover{
             background-color: #aaa;
       }

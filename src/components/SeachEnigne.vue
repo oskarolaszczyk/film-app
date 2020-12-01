@@ -46,6 +46,7 @@
                         listEmitted: movies,
                   }
             },
+            // TO-DO: poprawić czytelność kodu, pozmienać zmienne itp
              methods: {
     search: function () {
       let self = this;

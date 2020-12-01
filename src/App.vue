@@ -1,20 +1,25 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
   <SearchEngine @search-event="handleAppEvent"/>
   <MovieTable :dataFromEvent='eventData' />
+  <MovieByGenre/>
+  <MovieByCast/>
 
 </template>
 
 <script>
 import MovieTable from './components/MovieTable.vue'
 import SearchEngine from './components/SeachEnigne.vue'
+import MovieByCast from './components/MovieByCast.vue';
+import MovieByGenre from './components/MovieByGenre.vue'
 import films from './assets/movies.json'
 
 export default {
   name: 'App',
   components: {
     MovieTable,
-    SearchEngine
+    SearchEngine,
+    MovieByCast,
+    MovieByGenre
   },
   data: function(){
     return {

@@ -1,0 +1,72 @@
+<template>
+      <h1>Movies by genre</h1>
+        <ol v-for="genre in genres" :key="genre">
+            <h2>{{ genre }}</h2>
+            <div v-for="(movie, key) in getMoviesByGenre(genre)" :key="key">
+                  <li>{{ movie.title }}</li>
+            </div>
+      </ol>
+</template>
+
+<script>
+import films from '../assets/movies.json';
+import _ from "underscore";
+
+export default {
+  name: "MovieByGenre",
+  data() {
+    return {
+      movies: films,
+      genres: [],
+    };
+  },
+methods: {
+    getMoviesByGenre: function (genre) {
+      let moviesByGenre = _.filter(this.movies, function (film) {
+        for (let i in film.genres) {
+          if (film.genres[i] === genre) {
+            return true;
+          }
+        }
+        return false;
+      });
+
+      moviesByGenre = _.sortBy(moviesByGenre, function (film) {
+        return film.title;
+      });
+
+      return moviesByGenre;
+    },
+
+    getGenres: function () {
+      let genres = [];
+      for (let movie in this.movies) {
+        for (let genre in this.movies[movie].genres) {
+            genres.push(this.movies[movie].genres[genre]);
+          }
+        }
+      this.genres = _.unique(genres);
+    },
+
+    get100RandomMovies: function () {
+      let randomMovies = this.movies;
+      randomMovies.sort(() => Math.random() - 0.5);
+
+      return randomMovies.slice(0, 100);
+    },
+  },
+
+  mounted() {
+    this.movies = this.get100RandomMovies();
+    this.getGenres();
+  },
+
+};
+</script>
+
+<style scoped>
+
+h2, li {
+      text-align: left;
+}
+</style>

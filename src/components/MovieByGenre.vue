@@ -2,7 +2,8 @@
       <h1>Movies by genre</h1>
         <ol v-for="genre in genres" :key="genre">
             <h2>{{ genre }}</h2>
-            <div v-for="(movie, key) in getMoviesByGenre(genre)" :key="key">
+            <!-- change this div -->
+            <div v-for="movie in getMoviesByGenre(genre)" :key="movie">
                   <li>{{ movie.title }}</li>
             </div>
       </ol>
@@ -48,16 +49,16 @@ methods: {
       this.genres = _.unique(genres);
     },
 
-    get100RandomMovies: function () {
+    getRandomMovies: function () {
       let randomMovies = this.movies;
       randomMovies.sort(() => Math.random() - 0.5);
 
-      return randomMovies.slice(0, 100);
+      return randomMovies.slice(0, 50);
     },
   },
 
   mounted() {
-    this.movies = this.get100RandomMovies();
+    this.movies = this.getRandomMovies();
     this.getGenres();
   },
 

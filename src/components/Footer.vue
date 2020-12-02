@@ -3,8 +3,7 @@
     <div class="hr"></div>
     <div class="container">
       <p>
-        <span>
-          <strong>&copy; Oskar Olaszczyk, Kamil Skalski</strong>. "Applications in Interpreted Languages"</span>
+        <span><strong>&copy; Oskar Olaszczyk, Kamil Skalski</strong>. "Applications in Interpreted Languages"</span>
       </p>
     </div>
   </div>
@@ -13,22 +12,12 @@
   export default {
     name: "Footer",
 
-    props: {
-      
-    },
-
   }
 </script>
 
 <style scopped>
   #footer {
     margin-bottom: 3em;
-  }
-
-  #footer .icon {
-    height: 23px;
-    display: inline-block;
-    margin-bottom: -6px;
   }
 
   .hr {

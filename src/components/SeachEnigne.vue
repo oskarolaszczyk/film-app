@@ -2,24 +2,24 @@
   <h1>Search engine</h1>
 <form>
         <div class="form-group">
-            <label for=inputTitle>Tytuł</label>
-            <input type="text" v-model="inputTitle" class="form-control" placeholder="Podaj tytuł lub fragment tytułu filmu"/>
+            <label for=inputTitle>Title</label>
+            <input type="text" v-model="inputTitle" class="form-control" placeholder="Enter a title or fragment of the movie title"/>
         </div>
         <div class="form-group row">
-          <label class="col-sm-4 col-form-label" for="inputProductionFrom">Rok produkcji od:</label>
+          <label class="col-sm-4 col-form-label" for="inputProductionFrom">Production year from:</label>
           <div class="col-sm-8">
-              <input type="text" v-model="inputProductionFrom" class="form-control"  placeholder="Liczba naturalna z przedziału 1900-2019"/>
+              <input type="text" v-model="inputProductionFrom" class="form-control"  placeholder="A natural number from the range 1900-2019 "/>
           </div>
         </div>
         <div class="form-group row">
-            <label class="col-sm-4 col-form-label" for="inputProductionTo">Rok produkcji do:</label>
+            <label class="col-sm-4 col-form-label" for="inputProductionTo">Production year from:</label>
             <div class="col-sm-8">
-                <input type="text" v-model="inputProductionTo" class="form-control" placeholder="Liczba naturalna z przedziału 1900-2019"/>
+                <input type="text" v-model="inputProductionTo" class="form-control" placeholder="A natural number from the range 1900-2019"/>
             </div>
         </div>
         <div class="form-group">
-          <label for="inputCast">Obsada</label>
-          <input type="text" v-model="inputCast" class="form-control" placeholder="Imię i nazwisko"/>
+          <label for="inputCast">Cast</label>
+          <input type="text" v-model="inputCast" class="form-control" placeholder="First name and last name"/>
         </div>
         <div>
             <button class="btn btn-info col-sm-12" type="button" v-on:click="search">Search</button>
@@ -72,7 +72,12 @@
 </script>
 
 <style scoped>
-    
+    h1 {
+  margin-bottom: 20px;
+}
+label {
+  font-weight: 700;
+}
 </style>
 
 

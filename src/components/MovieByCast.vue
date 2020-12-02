@@ -1,4 +1,6 @@
 <template>
+    <div class="hr"></div>
+
       <h1>Movies by cast</h1>
         <ol v-for="cast in casts" :key="cast">
             <h2>{{ cast }}</h2>
@@ -71,9 +73,4 @@ h2, li {
       text-align: left;
 }
 
-h1 {
-  margin-top: 30px;
-  margin-bottom: 20px;
-
-}
 </style>

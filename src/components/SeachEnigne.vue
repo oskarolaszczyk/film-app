@@ -1,83 +1,83 @@
 <template>
   <h1>Search engine</h1>
-<form>
-        <div class="form-group">
-            <label for=inputTitle>Title</label>
-            <input type="text" v-model="inputTitle" class="form-control" placeholder="Enter a title or fragment of the movie title"/>
-        </div>
-        <div class="form-group row">
-          <label class="col-sm-4 col-form-label" for="inputProductionFrom">Production year from:</label>
-          <div class="col-sm-8">
-              <input type="text" v-model="inputProductionFrom" class="form-control"  placeholder="A natural number from the range 1900-2019 "/>
-          </div>
-        </div>
-        <div class="form-group row">
-            <label class="col-sm-4 col-form-label" for="inputProductionTo">Production year from:</label>
-            <div class="col-sm-8">
-                <input type="text" v-model="inputProductionTo" class="form-control" placeholder="A natural number from the range 1900-2019"/>
-            </div>
-        </div>
-        <div class="form-group">
-          <label for="inputCast">Cast</label>
-          <input type="text" v-model="inputCast" class="form-control" placeholder="First name and last name"/>
-        </div>
-        <div>
-            <button class="btn btn-info col-sm-12" type="button" v-on:click="search">Search</button>
-        </div>
-</form>
+  <form>
+    <div class="form-group">
+      <label for=inputTitle>Title</label>
+      <input type="text" v-model="inputTitle" class="form-control" placeholder="Enter a title or fragment of the movie title"/>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-4 col-form-label" for="inputProductionFrom">Production year from:</label>
+      <div class="col-sm-8">
+        <input type="text" v-model="inputProductionFrom" class="form-control"  placeholder="A natural number from the range 1900-2019 "/>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-4 col-form-label" for="inputProductionTo">Production year from:</label>
+      <div class="col-sm-8">
+        <input type="text" v-model="inputProductionTo" class="form-control" placeholder="A natural number from the range 1900-2019"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCast">Cast</label>
+      <input type="text" v-model="inputCast" class="form-control" placeholder="First name and last name"/>
+    </div>
+    <div>
+      <button class="btn btn-info col-sm-12" type="button" v-on:click="search">Search</button>
+    </div>
+  </form>
 </template>
 
 <script>
-      import movies from '../assets/movies.json';
-      import _ from 'underscore'
+  import movies from '../assets/movies.json';
+  import _ from 'underscore'
 
-      export default {
-            name: "SearchEngine",
-            data: function () {
-                  return {
-                        movies: movies,
-                        inputTitle: "",
-                        inputProductionFrom: "",
-                        inputProductionTo: "",
-                        inputCast: "",
-                  }
-            },
-            // TO-DO: poprawić czytelność kodu, pozmienać zmienne itp
-             methods: {
-    search: function () {
-      let self = this;
-      let listEmitted = this.movies
-      listEmitted = _.filter(this.movies, function (movie) {
-        let isInputTitle = self.inputTitle === "" || movie.title.toLowerCase().includes(self.inputTitle.toLowerCase())
-        let isInputProductionFrom = movie.year >= self.inputProductionFrom || self.inputProductionFrom === ""
-        let isInputProductionTo = movie.year <= self.inputProductionTo|| self.inputProductionTo=== ""
-        
-        if (isInputTitle && isInputProductionFrom && isInputProductionTo) {
-          if (self.inputCast === "") {
-            return true;
-          } else {
-            for (let i = 0; i < movie.cast.length; i++) {
-              if (movie.cast[i].toLowerCase() === self.inputCast.toLowerCase()) {
-                return true;
+  export default {
+    name: "SearchEngine",
+    data: function () {
+    return {
+      movies: movies,
+      inputTitle: "",
+      inputProductionFrom: "",
+      inputProductionTo: "",
+      inputCast: "",
+  }
+  },
+  // TO-DO: poprawić czytelność kodu, pozmienać zmienne itp
+    methods: {
+      search: function () {
+        let self = this;
+        let listEmitted = this.movies
+        listEmitted = _.filter(this.movies, function (movie) {
+          let isInputTitle = self.inputTitle === "" || movie.title.toLowerCase().includes(self.inputTitle.toLowerCase())
+          let isInputProductionFrom = movie.year >= self.inputProductionFrom || self.inputProductionFrom === ""
+          let isInputProductionTo = movie.year <= self.inputProductionTo|| self.inputProductionTo === ""
+
+          if (isInputTitle && isInputProductionFrom && isInputProductionTo) {
+            if (self.inputCast === "") {
+              return true;
+            } else {
+              for (let i = 0; i < movie.cast.length; i++) {
+                if (movie.cast[i].toLowerCase() === self.inputCast.toLowerCase()) {
+                  return true;
+                }
               }
             }
           }
-        }
-        return false;
-      });
-      this.$emit("search-event", listEmitted);
-    },
+          return false;
+          });
+        this.$emit("search-event", listEmitted);
+      },
   },
 };
 </script>
 
 <style scoped>
-    h1 {
-  margin-bottom: 20px;
-}
-label {
-  font-weight: 700;
-}
+  h1 {
+    margin-bottom: 20px;
+  }
+  label {
+    font-weight: 700;
+  }
 </style>
 
 

@@ -1,4 +1,5 @@
 <template>
+    <div class="hr"></div>
       <h1>Movies by genre</h1>
         <ol v-for="genre in genres" :key="genre">
             <h2>{{ genre }}</h2>
@@ -66,13 +67,7 @@ methods: {
 </script>
 
 <style scoped>
-h2, li {
-      text-align: left;
-}
-
-h1 {
-  margin-top: 30px;
-  margin-bottom: 20px;
-
-}
+      h2, li {
+            text-align: left;
+      }
 </style>

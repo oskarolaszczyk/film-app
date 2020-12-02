@@ -1,4 +1,5 @@
 <template>
+  <div class="hr"></div>
   <h1>Movie database</h1>
   <div id="tableFilms" ref="table">
     <table class="table-condensed table-hover">
@@ -26,43 +27,37 @@
 </template>
 
 <script>
-export default {
-  name: "MovieTable",
-  data() {
-    return {
-      n: 10,
-      numberOfMovies: 10,
-    }
-  },
-  props: {
-    dataFromEvent: Array,
-  },
-  
-  methods: {
-    sliceTable: function () {
-      let movies = this.dataFromEvent;
-      return movies.slice(0, this.n);
+  export default {
+    name: "MovieTable",
+    data() {
+      return {
+        n: 10,
+      }
     },
-    more: function () {
-      this.n += this.numberOfMovies;
+    props: {
+      dataFromEvent: Array,
     },
+    
+    methods: {
+      sliceTable: function () {
+        let movies = this.dataFromEvent;
+        return movies.slice(0, this.n);
+      },
+      more: function () {
+        this.n += 10;
+      },
 
+    }
   }
-}
 </script>
 
 <style scoped>
-table {
-  width: 100%;
-}
-h1 {
-  margin-top: 30px;
-  margin-bottom: 20px;
+  table {
+    width: 100%;
+  }
 
-}
-
-button {
-  margin-top: 20px;
-}
+  button {
+    margin-top: 20px;
+  }
 </style>
 

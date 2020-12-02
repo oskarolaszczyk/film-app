@@ -1,6 +1,7 @@
 <template>
+  <h1>Movie database</h1>
   <div id="tableFilms" ref="table">
-    <table>
+    <table class="table-condensed table-hover">
       <thead>
       <tr>
         <th>Title</th>
@@ -10,16 +11,16 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="film in sliceView()" v-bind:key="film.title">
-        <td>{{ film.title }}</td>
-        <td>{{ film.year }}</td>
-        <td>{{ film.cast.join(', ') }}</td>
-        <td>{{ film.genres.join(', ') }}</td>
+      <tr v-for="movie in sliceTable()" :key="movie.title">
+        <td>{{ movie.title }}</td>
+        <td>{{ movie.year }}</td>
+        <td>{{ movie.cast.join(', ') }}</td>
+        <td>{{ movie.genres.join(', ') }}</td>
       </tr>
       </tbody>
     </table>
     <div>
-      <button type="button" id="more" @click="moreMovies()">More</button>
+      <button class="btn btn-info col-sm-12" type="button" v-on:click="more()">More</button>
     </div>
   </div>
 </template>
@@ -38,20 +39,30 @@ export default {
   },
   
   methods: {
-    sliceView: function () {
-      let films = this.dataFromEvent;
-      return films.slice(0, this.n);
+    sliceTable: function () {
+      let movies = this.dataFromEvent;
+      return movies.slice(0, this.n);
     },
-    moreMovies: function () {
+    more: function () {
       this.n += this.numberOfMovies;
     },
+
   }
 }
 </script>
 
 <style scoped>
-      tr:hover{
-            background-color: #aaa;
-      }
+table {
+  width: 100%;
+}
+h1 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+
+}
+
+button {
+  margin-top: 20px;
+}
 </style>
 

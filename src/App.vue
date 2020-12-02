@@ -3,6 +3,7 @@
   <MovieTable :dataFromEvent='eventData' />
   <MovieByGenre/>
   <MovieByCast/>
+  <Footer/>
 
 </template>
 
@@ -11,7 +12,8 @@ import MovieTable from './components/MovieTable.vue'
 import SearchEngine from './components/SeachEnigne.vue'
 import MovieByCast from './components/MovieByCast.vue';
 import MovieByGenre from './components/MovieByGenre.vue'
-import films from './assets/movies.json'
+import Footer from './components/Footer.vue'
+import movies from './assets/movies.json'
 
 export default {
   name: 'App',
@@ -19,11 +21,12 @@ export default {
     MovieTable,
     SearchEngine,
     MovieByCast,
-    MovieByGenre
+    MovieByGenre,
+    Footer
   },
   data: function(){
     return {
-      eventData: films
+      eventData: movies
     }
   },
     methods: {

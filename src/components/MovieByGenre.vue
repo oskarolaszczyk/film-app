@@ -10,30 +10,30 @@
 </template>
 
 <script>
-import films from '../assets/movies.json';
+import movies from '../assets/movies.json';
 import _ from "underscore";
 
 export default {
   name: "MovieByGenre",
   data() {
     return {
-      movies: films,
+      movies: movies,
       genres: [],
     };
   },
 methods: {
     getMoviesByGenre: function (genre) {
-      let moviesByGenre = _.filter(this.movies, function (film) {
-        for (let i in film.genres) {
-          if (film.genres[i] === genre) {
+      let moviesByGenre = _.filter(this.movies, function (movie) {
+        for (let i in movie.genres) {
+          if (movie.genres[i] === genre) {
             return true;
           }
         }
         return false;
       });
 
-      moviesByGenre = _.sortBy(moviesByGenre, function (film) {
-        return film.title;
+      moviesByGenre = _.sortBy(moviesByGenre, function (movie) {
+        return movie.title;
       });
 
       return moviesByGenre;
@@ -66,8 +66,13 @@ methods: {
 </script>
 
 <style scoped>
-
 h2, li {
       text-align: left;
+}
+
+h1 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+
 }
 </style>

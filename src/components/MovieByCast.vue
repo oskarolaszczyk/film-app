@@ -10,30 +10,30 @@
 </template>
 
 <script>
-import films from '../assets/movies.json';
+import movies from '../assets/movies.json';
 import _ from "underscore";
 
 export default {
   name: "MovieByCast",
   data() {
     return {
-      movies: films,
+      movies: movies,
       casts: [],
     };
   },
 methods: {
     getMoviesByCast: function (cast) {
-      let moviesByCast = _.filter(this.movies, function (film) {
-        for (let i in film.cast) {
-          if (film.cast[i] === cast) {
+      let moviesByCast = _.filter(this.movies, function (movie) {
+        for (let i in movie.cast) {
+          if (movie.cast[i] === cast) {
             return true;
           }
         }
         return false;
       });
 
-      moviesByCast = _.sortBy(moviesByCast, function (film) {
-        return film.title;
+      moviesByCast = _.sortBy(moviesByCast, function (movie) {
+        return movie.title;
       });
 
       return moviesByCast;
@@ -53,7 +53,7 @@ methods: {
       let randomMovies = this.movies;
       randomMovies.sort(() => Math.random() - 0.5);
 
-      return randomMovies.slice(0, 50);
+      return randomMovies.slice(0, 25);
     },
   },
 
@@ -69,5 +69,11 @@ methods: {
 
 h2, li {
       text-align: left;
+}
+
+h1 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+
 }
 </style>

@@ -42,21 +42,20 @@
       inputCast: "",
   }
   },
-  // TO-DO: poprawić czytelność kodu, pozmienać zmienne itp
     methods: {
       search: function () {
         let self = this;
-        let listEmitted = this.movies
-        listEmitted = _.filter(this.movies, function (movie) {
-          let isInputTitle = self.inputTitle === "" || movie.title.toLowerCase().includes(self.inputTitle.toLowerCase())
-          let isInputProductionFrom = movie.year >= self.inputProductionFrom || self.inputProductionFrom === ""
-          let isInputProductionTo = movie.year <= self.inputProductionTo|| self.inputProductionTo === ""
+        let moviesBySearch = this.movies
+        moviesBySearch = _.filter(this.movies, function (movie) {
+            let isInputTitle = self.inputTitle === "" || movie.title.toLowerCase().includes(self.inputTitle.toLowerCase())
+            let isInputProductionFrom = self.inputProductionFrom === "" || movie.year >= self.inputProductionFrom 
+            let isInputProductionTo = self.inputProductionTo === "" || movie.year <= self.inputProductionTo
 
           if (isInputTitle && isInputProductionFrom && isInputProductionTo) {
             if (self.inputCast === "") {
               return true;
             } else {
-              for (let i = 0; i < movie.cast.length; i++) {
+              for (let i in movie.cast) {
                 if (movie.cast[i].toLowerCase() === self.inputCast.toLowerCase()) {
                   return true;
                 }
@@ -65,7 +64,7 @@
           }
           return false;
           });
-        this.$emit("search-event", listEmitted);
+        this.$emit("search-event", moviesBySearch);
       },
   },
 };

@@ -4,10 +4,7 @@
       <h1>Movies by cast</h1>
         <ol v-for="cast in casts" :key="cast">
             <h2>{{ cast }}</h2>
-            <!-- change this div -->
-            <div v-for="movie in getMoviesByCast(cast)" :key="movie">
-                  <li>{{ movie.title }}</li>
-            </div>
+            <li v-for="movie in getMoviesByCast(cast)" :key="movie">{{ movie.title }}</li>     
       </ol>
 </template>
 
@@ -24,6 +21,13 @@ export default {
     };
   },
 methods: {
+      getRandomMovies: function () {
+      let randomMovies = this.movies;
+      randomMovies.sort(() => Math.random() - 0.5);
+
+      return randomMovies.slice(0, 25);
+    },
+
     getMoviesByCast: function (cast) {
       let moviesByCast = _.filter(this.movies, function (movie) {
         for (let i in movie.cast) {
@@ -49,13 +53,6 @@ methods: {
           }
         }
       this.casts = _.unique(casts);
-    },
-
-    getRandomMovies: function () {
-      let randomMovies = this.movies;
-      randomMovies.sort(() => Math.random() - 0.5);
-
-      return randomMovies.slice(0, 25);
     },
   },
 

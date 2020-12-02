@@ -1,5 +1,5 @@
 <template>
-  <SearchEngine @search-event="handleAppEvent"/>
+  <SearchEngine @search-event="handleSearchEvent"/>
   <MovieTable :dataFromEvent='eventData' />
   <MovieByGenre/>
   <MovieByCast/>
@@ -30,7 +30,7 @@
       }
     },
       methods: {
-      handleAppEvent: function(data) {
+      handleSearchEvent: function(data) {
         this.eventData = data;
       }
     }

@@ -12,7 +12,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr v-for="movie in sliceTable()" :key="movie.title">
+      <tr v-for="movie in dataFromEvent.slice(0, this.n)" :key="movie.title">
         <td>{{ movie.title }}</td>
         <td>{{ movie.year }}</td>
         <td>{{ movie.cast.join(', ') }}</td>
@@ -39,10 +39,6 @@
     },
     
     methods: {
-      sliceTable: function () {
-        let movies = this.dataFromEvent;
-        return movies.slice(0, this.n);
-      },
       more: function () {
         this.n += 10;
       },

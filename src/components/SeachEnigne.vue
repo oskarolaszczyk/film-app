@@ -44,26 +44,21 @@
   },
     methods: {
       search: function () {
-        let self = this;
+        let that = this;
         let moviesBySearch = this.movies
         moviesBySearch = _.filter(this.movies, function (movie) {
-            let isInputTitle = self.inputTitle === "" || movie.title.toLowerCase().includes(self.inputTitle.toLowerCase())
-            let isInputProductionFrom = self.inputProductionFrom === "" || movie.year >= self.inputProductionFrom 
-            let isInputProductionTo = self.inputProductionTo === "" || movie.year <= self.inputProductionTo
 
-          if (isInputTitle && isInputProductionFrom && isInputProductionTo) {
-            if (self.inputCast === "") {
+            let isInputTitle = that.inputTitle === "" || movie.title.toLowerCase().includes(that.inputTitle.toLowerCase())
+            let isInputProductionFrom = that.inputProductionFrom === "" || movie.year >= that.inputProductionFrom 
+            let isInputProductionTo = that.inputProductionTo === "" || movie.year <= that.inputProductionTo
+            let isInputCast = that.inputCast === "" || movie.cast.includes(that.inputCast)
+
+          if (isInputTitle && isInputProductionFrom && isInputProductionTo && isInputCast) {
               return true;
-            } else {
-              for (let i in movie.cast) {
-                if (movie.cast[i].toLowerCase() === self.inputCast.toLowerCase()) {
-                  return true;
-                }
-              }
-            }
-          }
+          } 
           return false;
           });
+          
         this.$emit("search-event", moviesBySearch);
       },
   },

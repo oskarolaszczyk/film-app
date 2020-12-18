@@ -1,4 +1,4 @@
-# film-app
+# film-app by Oskar Olaszczyk
 
 ## Project setup
 ```
